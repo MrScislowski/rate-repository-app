@@ -1,5 +1,5 @@
-import { View, StyleSheet, Text, Pressable } from "react-native";
-import Constants from "expo-constants";
+import { StyleSheet, Text, Pressable } from "react-native";
+import { Link } from "react-router-native";
 
 const styles = StyleSheet.create({
   tab: {
@@ -12,11 +12,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const AppBarTab = ({ text }) => {
+const AppBarTab = ({ text, destination }) => {
   return (
-    <Pressable style={styles.tab}>
+    <Link style={styles.tab} to={destination}>
       <Text style={styles.tabText}>{text}</Text>
-    </Pressable>
+    </Link>
   );
 };
 

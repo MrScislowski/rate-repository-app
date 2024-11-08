@@ -4,6 +4,7 @@ import { Link } from "react-router-native";
 const styles = StyleSheet.create({
   tab: {
     flexGrow: 1,
+    marginHorizontal: 10,
   },
   tabText: {
     fontWeight: "bold",

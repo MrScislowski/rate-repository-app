@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     color: theme.secondaryFontColor,
   },
   languageText: {
-    backgroundColor: "#005eff",
+    backgroundColor: theme.submitColor,
     color: "#ffffff",
     marginLeft: 80,
     alignSelf: "flex-start",

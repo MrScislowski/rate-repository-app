@@ -1,4 +1,5 @@
-import { Alert, Pressable, StyleSheet, Text, TextInput } from "react-native";
+import { Alert, Pressable, StyleSheet, TextInput } from "react-native";
+import Text from "./Text";
 import { useFormik } from "formik";
 import theme from "../theme";
 import * as yup from "yup";

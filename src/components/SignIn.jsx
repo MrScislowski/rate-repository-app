@@ -36,13 +36,15 @@ const ErrorText = (props) => {
 const InputBox = (props) => {
   const { inputName, formik, ...otherProps } = props;
 
-  const hasError =
-    formik.touched[inputName] && formik.errors[inputName] !== undefined;
+  const hasError = formik.errors[inputName] !== undefined;
 
   return (
     <>
       <TextInput
-        style={[styles.textinput, hasError && { borderColor: "#8a0000" }]}
+        style={[
+          styles.textinput,
+          hasError && { borderColor: "#8a0000", borderWidth: 2 },
+        ]}
         name={inputName}
         placeholder={inputName}
         onChangeText={formik.handleChange(inputName)}

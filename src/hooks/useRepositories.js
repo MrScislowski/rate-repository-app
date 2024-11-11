@@ -8,7 +8,11 @@ const useRepositories = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://192.168.1.253:5001/api/repositories"
+        "http://192.168.0.133:5001/api/repositories"
+        // POWERSHELL:
+        // Get-NetIPConfiguration | Where-Object { $_.InterfaceAlias -eq "Wi-Fi"} | Select-Object -Property IPv4Address
+        // MAC:
+        // ifconfig | grep 192.160.0
       );
       const responseData = await response.json();
       console.log(responseData);

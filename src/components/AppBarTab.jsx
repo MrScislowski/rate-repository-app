@@ -1,24 +1,26 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
+import React from "react";
 import Text from "./Text";
-import { Link } from "react-router-native";
 
 const styles = StyleSheet.create({
-  tab: {
+  container: {
     flexGrow: 1,
     marginHorizontal: 10,
   },
-  tabText: {
-    fontWeight: "bold",
-    color: "#ffffff",
-    fontSize: 18,
-  },
+  text: { fontWeight: "bold", color: "red", fontSize: 18 },
 });
 
-const AppBarTab = ({ text, destination }) => {
+const AppBarTab = ({ children }) => {
   return (
-    <Link style={styles.tab} to={destination}>
-      <Text style={styles.tabText}>{text}</Text>
-    </Link>
+    <View style={styles.container}>
+      <>
+        {React.Children.map(children, (child) =>
+          React.isValidElement(child) && child.type === Text
+            ? React.cloneElement(child, { style: styles.text }) // Add styles.text to Text elements
+            : child
+        )}
+      </>
+    </View>
   );
 };
 

@@ -19,4 +19,12 @@ const GET_REPOSITORIES = gql`
   }
 `;
 
-export default { GET_REPOSITORIES };
+const GET_CURRENT_USER = gql`
+  query GetCurrentUser {
+    me {
+      username
+    }
+  }
+`;
+
+export default { GET_REPOSITORIES, GET_CURRENT_USER };

@@ -64,7 +64,6 @@ const numberFormatter = (n) => {
 
 const RepositoryItem = (props) => {
   const item = props.item;
-  console.log(item.ownerAvatarUrl);
   return (
     <View>
       <View style={styles.headerRow}>

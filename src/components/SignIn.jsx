@@ -64,6 +64,10 @@ const SignIn = () => {
   const [signIn] = useSignIn();
   const navigate = useNavigate();
 
+  return <SignInContainer signIn={signIn} navigate={navigate} />;
+};
+
+export const SignInContainer = ({ signIn, navigate }) => {
   const formik = useFormik({
     initialValues: {
       username: "",

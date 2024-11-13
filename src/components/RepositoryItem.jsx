@@ -65,7 +65,7 @@ const numberFormatter = (n) => {
 const RepositoryItem = (props) => {
   const item = props.item;
   return (
-    <View>
+    <View testID="repositoryItem">
       <View style={styles.headerRow}>
         <View style={styles.imageContainer}>
           <Image

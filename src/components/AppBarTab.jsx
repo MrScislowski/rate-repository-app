@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     marginHorizontal: 10,
   },
-  text: { fontWeight: "bold", color: "red", fontSize: 18 },
+  text: { fontWeight: "bold", color: "white", fontSize: 18 },
 });
 
 const AppBarTab = ({ children }) => {

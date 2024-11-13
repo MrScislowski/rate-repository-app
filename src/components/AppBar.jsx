@@ -19,7 +19,16 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight + PADDING,
     backgroundColor: theme.backdropColor,
   },
+  titleText: {
+    fontWeight: "bold",
+    color: "white",
+    fontSize: 18,
+  },
 });
+
+const AppBarTitle = ({ children }) => (
+  <Text style={styles.titleText}>{children}</Text>
+);
 
 const AppBar = () => {
   const currentUser = useQuery(queries.GET_CURRENT_USER).data?.me;
@@ -32,13 +41,13 @@ const AppBar = () => {
       <ScrollView horizontal>
         <AppBarTab>
           <Link to="/">
-            <Text>Repositories</Text>
+            <AppBarTitle>Repositories</AppBarTitle>
           </Link>
         </AppBarTab>
         {!currentUser && (
           <AppBarTab>
             <Link to="/signin">
-              <Text>Sign in</Text>
+              <AppBarTitle>Sign in</AppBarTitle>
             </Link>
           </AppBarTab>
         )}
@@ -52,7 +61,7 @@ const AppBar = () => {
                 navigate("/signin");
               }}
             >
-              <Text>Sign out</Text>
+              <AppBarTitle>Sign out</AppBarTitle>
             </Pressable>
           </AppBarTab>
         )}

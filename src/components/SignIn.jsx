@@ -14,12 +14,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   },
-  signinbutton: {
-    backgroundColor: theme.submitColor,
-    margin: 10,
-    padding: 10,
-    color: "#ffffff",
-  },
+  signinbutton: theme.button,
   errortext: {
     marginHorizontal: 10,
     color: "#8a0000",

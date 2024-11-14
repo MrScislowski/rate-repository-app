@@ -12,6 +12,12 @@ const theme = {
   secondaryFontColor: "#3f3f3f",
   backdropColor: "#646464",
   submitColor: "#005eff",
+  button: {
+    backgroundColor: "#005eff",
+    margin: 10,
+    padding: 10,
+    color: "#ffffff",
+  },
 };
 
 export default theme;

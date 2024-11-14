@@ -1,6 +1,10 @@
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Pressable } from "react-native";
 import Text from "./Text";
 import theme from "../theme";
+import { useParams } from "react-router-native";
+import { useEffect, useState } from "react";
+import { useLazyQuery, useQuery } from "@apollo/client";
+import queries from "../graphql/queries";
 
 const styles = StyleSheet.create({
   headerRow: {
@@ -56,6 +60,7 @@ const styles = StyleSheet.create({
   unitText: {
     color: theme.secondaryFontColor,
   },
+  button: theme.button,
 });
 
 const numberFormatter = (n) => {
@@ -63,7 +68,35 @@ const numberFormatter = (n) => {
 };
 
 const RepositoryItem = (props) => {
-  const item = props.item;
+  const [item, setItem] = useState(props?.item);
+  const params = useParams();
+  const [fetchRepo, fetchRepoResponse] = useLazyQuery(
+    queries.GET_REPOSITORY_BY_ID,
+    {
+      variables: { repositoryId: params?.id },
+    }
+  );
+
+  useEffect(() => {
+    if (params?.id) {
+      fetchRepo();
+    }
+  }, []);
+
+  // Need to do a request for {"id":"async-library.react-async"}
+
+  if (fetchRepoResponse.error) {
+    return <Text>Error fetching repo</Text>;
+  }
+
+  if (fetchRepoResponse.data && !item) {
+    setItem(fetchRepoResponse.data.repository);
+  }
+
+  if (fetchRepoResponse.loading || !item) {
+    return <Text>Loading...</Text>;
+  }
+
   return (
     <View testID="repositoryItem">
       <View style={styles.headerRow}>
@@ -108,6 +141,11 @@ const RepositoryItem = (props) => {
           <Text>Rating</Text>
         </View>
       </View>
+      {!item?.url || (
+        <Pressable style={styles.button}>
+          <Text>Go to github</Text>
+        </Pressable>
+      )}
     </View>
   );
 };

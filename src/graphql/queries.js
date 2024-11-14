@@ -45,4 +45,32 @@ const GET_REPOSITORY_BY_ID = gql`
   }
 `;
 
-export default { GET_REPOSITORIES, GET_CURRENT_USER, GET_REPOSITORY_BY_ID };
+const GET_REPOSITORY_REVIEWS_BY_ID = gql`
+  query Query($repositoryId: ID!) {
+    repository(id: $repositoryId) {
+      id
+      fullName
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export default {
+  GET_REPOSITORIES,
+  GET_CURRENT_USER,
+  GET_REPOSITORY_BY_ID,
+  GET_REPOSITORY_REVIEWS_BY_ID,
+};

@@ -69,7 +69,7 @@ const numberFormatter = (n) => {
   return n > 1000 ? `${Math.round(n / 100) / 10}k` : n;
 };
 
-const RepositoryItem = (props) => {
+const RepositoryItemSummary = (props) => {
   const [item, setItem] = useState(props?.item);
   const params = useParams();
   const [fetchRepo, fetchRepoResponse] = useLazyQuery(
@@ -155,4 +155,4 @@ const RepositoryItem = (props) => {
   );
 };
 
-export default RepositoryItem;
+export default RepositoryItemSummary;

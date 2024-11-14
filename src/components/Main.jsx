@@ -2,10 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import RepositoryList from "./RepositoryList";
 import AppBar from "./AppBar";
-import Text from "./Text";
 import { Route, Routes } from "react-router-native";
 import SignIn from "./SignIn";
-import RepositoryItem from "./RepositoryItem";
+import SingleRepository from "./SingleRepository";
 
 export default function Main() {
   return (
@@ -13,7 +12,7 @@ export default function Main() {
       <AppBar />
       <Routes>
         <Route path="/" element={<RepositoryList />} />
-        <Route path="/repositories/:id" element={<RepositoryItem />} />
+        <Route path="/repositories/:id" element={<SingleRepository />} />
         <Route path="/signin" element={<SignIn />} />
       </Routes>
       <StatusBar style="auto" />

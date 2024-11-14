@@ -44,6 +44,13 @@ const AppBar = () => {
             <AppBarTitle>Repositories</AppBarTitle>
           </Link>
         </AppBarTab>
+        {currentUser && (
+          <AppBarTab>
+            <Link to="/createReview">
+              <AppBarTitle>Create a review</AppBarTitle>
+            </Link>
+          </AppBarTab>
+        )}
         {!currentUser && (
           <AppBarTab>
             <Link to="/signin">

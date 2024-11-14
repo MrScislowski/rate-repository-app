@@ -8,4 +8,12 @@ const AUTHENTICATE_USER = gql`
   }
 `;
 
-export default { AUTHENTICATE_USER };
+const CREATE_REVIEW = gql`
+  mutation CreateReview($review: CreateReviewInput) {
+    createReview(review: $review) {
+      repositoryId
+    }
+  }
+`;
+
+export default { AUTHENTICATE_USER, CREATE_REVIEW };

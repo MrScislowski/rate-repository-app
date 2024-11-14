@@ -62,6 +62,7 @@ const SingleRepository = () => {
 
   const reviewQuery = useQuery(queries.GET_REPOSITORY_REVIEWS_BY_ID, {
     variables: { repositoryId: id },
+    fetchPolicy: "cache-and-network",
   });
 
   return (

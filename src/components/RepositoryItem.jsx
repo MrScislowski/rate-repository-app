@@ -5,6 +5,7 @@ import { useParams } from "react-router-native";
 import { useEffect, useState } from "react";
 import { useLazyQuery, useQuery } from "@apollo/client";
 import queries from "../graphql/queries";
+import * as Linking from "expo-linking";
 
 const styles = StyleSheet.create({
   headerRow: {
@@ -61,6 +62,7 @@ const styles = StyleSheet.create({
     color: theme.secondaryFontColor,
   },
   button: theme.button,
+  buttonText: theme.buttonText,
 });
 
 const numberFormatter = (n) => {
@@ -142,8 +144,11 @@ const RepositoryItem = (props) => {
         </View>
       </View>
       {!item?.url || (
-        <Pressable style={styles.button}>
-          <Text>Go to github</Text>
+        <Pressable
+          style={styles.button}
+          onPress={() => Linking.openURL(item.url)}
+        >
+          <Text style={styles.buttonText}>Open in Github</Text>
         </Pressable>
       )}
     </View>

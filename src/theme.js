@@ -17,6 +17,13 @@ const theme = {
     margin: 10,
     padding: 10,
     color: "#ffffff",
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: "#ffffff",
+    textAlign: "center",
+    fontWeight: "bold",
+    padding: 5,
   },
 };
 

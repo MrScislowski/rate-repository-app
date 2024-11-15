@@ -4,6 +4,7 @@ import RepositoryList from "./RepositoryList";
 import AppBar from "./AppBar";
 import { Route, Routes } from "react-router-native";
 import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 import SingleRepository from "./SingleRepository";
 import ReviewForm from "./ReviewForm";
 
@@ -16,6 +17,7 @@ export default function Main() {
         <Route path="/repositories/:id" element={<SingleRepository />} />
         <Route path="/createReview" element={<ReviewForm />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
       <StatusBar style="auto" />
     </View>

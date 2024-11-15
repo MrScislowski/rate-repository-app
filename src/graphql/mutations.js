@@ -16,4 +16,12 @@ const CREATE_REVIEW = gql`
   }
 `;
 
-export default { AUTHENTICATE_USER, CREATE_REVIEW };
+const CREATE_USER = gql`
+  mutation Mutation($user: CreateUserInput) {
+    createUser(user: $user) {
+      username
+    }
+  }
+`;
+
+export default { AUTHENTICATE_USER, CREATE_REVIEW, CREATE_USER };

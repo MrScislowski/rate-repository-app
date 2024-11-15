@@ -58,6 +58,13 @@ const AppBar = () => {
             </Link>
           </AppBarTab>
         )}
+        {!currentUser && (
+          <AppBarTab>
+            <Link to="/signup">
+              <AppBarTitle>Sign up</AppBarTitle>
+            </Link>
+          </AppBarTab>
+        )}
         {currentUser && (
           <AppBarTab>
             <Pressable

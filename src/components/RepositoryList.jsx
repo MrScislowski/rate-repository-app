@@ -1,10 +1,12 @@
-import { FlatList, View, StyleSheet, Pressable } from "react-native";
+import { FlatList, View, StyleSheet, Pressable, TextInput } from "react-native";
 import RepositoryItemSummary from "./RepositoryItemSummary";
 import theme from "../theme";
 import useRepositories from "../hooks/useRepositories";
 import { useNavigate } from "react-router-native";
 import { Dropdown } from "react-native-element-dropdown";
+import { useDebounce } from "use-debounce";
 import Text from "./Text";
+
 import { useState } from "react";
 
 const styles = StyleSheet.create({
@@ -40,7 +42,13 @@ const RepositoryOrderingSelection = ({ ordering, setOrdering }) => {
 
 const RepositoryList = () => {
   const [ordering, setOrdering] = useState("Latest");
-  const { repositories } = useRepositories({ ordering });
+  const [searchText, setSearchText] = useState("");
+  const [searchTextDebounced] = useDebounce(searchText, 500);
+
+  const { repositories } = useRepositories({
+    ordering,
+    searchKeyword: searchTextDebounced,
+  });
 
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
@@ -51,6 +59,8 @@ const RepositoryList = () => {
       repositories={repositoryNodes}
       ordering={ordering}
       setOrdering={setOrdering}
+      searchText={searchText}
+      setSearchText={setSearchText}
     />
   );
 };
@@ -59,16 +69,28 @@ export const RepositoryListContainer = ({
   repositories,
   ordering,
   setOrdering,
+  searchText,
+  setSearchText,
 }) => {
   const navigate = useNavigate();
 
   return (
     <FlatList
       ListHeaderComponent={
-        <RepositoryOrderingSelection
-          ordering={ordering}
-          setOrdering={setOrdering}
-        />
+        <>
+          <TextInput
+            style={{ backgroundColor: "lightgrey", padding: 10 }}
+            placeholder="Enter Search Text"
+            value={searchText}
+            onChangeText={(newtext) => {
+              setSearchText(newtext);
+            }}
+          />
+          <RepositoryOrderingSelection
+            ordering={ordering}
+            setOrdering={setOrdering}
+          />
+        </>
       }
       data={repositories}
       ItemSeparatorComponent={ItemSeparator}

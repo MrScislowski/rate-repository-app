@@ -38,6 +38,7 @@
     "react-native-element-dropdown": "^2.12.2",
     "react-native-web": "~0.19.13",
     "react-router-native": "^6.28.0",
+    "use-debounce": "^10.0.4",
     "yup": "^1.4.0"
   },
   "devDependencies": {

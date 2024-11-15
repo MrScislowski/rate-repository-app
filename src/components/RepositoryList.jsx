@@ -45,7 +45,7 @@ const RepositoryList = () => {
   const [searchText, setSearchText] = useState("");
   const [searchTextDebounced] = useDebounce(searchText, 500);
 
-  const { repositories } = useRepositories({
+  const { repositories, fetchMore } = useRepositories({
     ordering,
     searchKeyword: searchTextDebounced,
   });
@@ -61,6 +61,7 @@ const RepositoryList = () => {
       setOrdering={setOrdering}
       searchText={searchText}
       setSearchText={setSearchText}
+      fetchMore={fetchMore}
     />
   );
 };
@@ -71,8 +72,13 @@ export const RepositoryListContainer = ({
   setOrdering,
   searchText,
   setSearchText,
+  fetchMore,
 }) => {
   const navigate = useNavigate();
+
+  const onEndReached = () => {
+    fetchMore();
+  };
 
   return (
     <FlatList
@@ -94,6 +100,8 @@ export const RepositoryListContainer = ({
       }
       data={repositories}
       ItemSeparatorComponent={ItemSeparator}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.01}
       renderItem={({ item }) => (
         <Pressable onPress={() => navigate(`/repositories/${item.id}`)}>
           <RepositoryItemSummary item={item} />

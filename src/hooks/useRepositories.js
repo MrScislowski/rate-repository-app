@@ -13,19 +13,40 @@ const useRepositories = ({ ordering, searchKeyword = "" }) => {
     orderDirection = "ASC";
   }
 
-  const queryResult = useQuery(queries.GET_REPOSITORIES, {
-    fetchPolicy: "cache-and-network",
-    variables: {
-      orderBy,
-      orderDirection,
-      searchKeyword,
-    },
-  });
+  const { data, loading, refetch, fetchMore, ...result } = useQuery(
+    queries.GET_REPOSITORIES,
+    {
+      fetchPolicy: "cache-and-network",
+      variables: {
+        orderBy,
+        orderDirection,
+        searchKeyword,
+        first: 2,
+        after: "",
+      },
+    }
+  );
+
+  const handleFetchMore = () => {
+    const canFetchMore = !loading && data?.repositories.pageInfo.hasNextPage;
+
+    if (!canFetchMore) {
+      return;
+    }
+
+    fetchMore({
+      variables: {
+        after: data.repositories.pageInfo.endCursor,
+      },
+    });
+  };
 
   return {
-    repositories: queryResult.data?.repositories,
-    loading: queryResult.loading,
-    refetch: queryResult.refetch,
+    repositories: data?.repositories,
+    fetchMore: handleFetchMore,
+    loading,
+    refetch,
+    ...result,
   };
 };
 

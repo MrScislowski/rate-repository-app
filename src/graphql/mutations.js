@@ -24,4 +24,10 @@ const CREATE_USER = gql`
   }
 `;
 
-export default { AUTHENTICATE_USER, CREATE_REVIEW, CREATE_USER };
+const DELETE_REVIEW = gql`
+  mutation DeleteReview($deleteReviewId: ID!) {
+    deleteReview(id: $deleteReviewId)
+  }
+`;
+
+export default { AUTHENTICATE_USER, CREATE_REVIEW, CREATE_USER, DELETE_REVIEW };

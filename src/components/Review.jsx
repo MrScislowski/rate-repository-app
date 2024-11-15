@@ -1,10 +1,11 @@
-import { View, Pressable } from "react-native";
+import { View, Pressable, Alert } from "react-native";
 import Text from "./Text";
 import theme from "../theme";
 import { useNavigate } from "react-router-native";
 
-const ReviewButtons = ({ reviewId, repositoryId }) => {
+const ReviewButtons = ({ reviewId, repositoryId, handleDeleteReview }) => {
   const navigate = useNavigate();
+
   return (
     <View
       style={{
@@ -33,7 +34,10 @@ const ReviewButtons = ({ reviewId, repositoryId }) => {
           View Repository
         </Text>
       </Pressable>
-      <Pressable style={{ flexGrow: 1 }}>
+      <Pressable
+        style={{ flexGrow: 1 }}
+        onPress={() => handleDeleteReview(reviewId)}
+      >
         <Text
           style={{
             color: "white",
@@ -52,7 +56,7 @@ const ReviewButtons = ({ reviewId, repositoryId }) => {
   );
 };
 
-const Review = ({ review, mode }) => {
+const Review = ({ review, mode, handleDeleteReview }) => {
   return (
     <>
       <View
@@ -97,7 +101,11 @@ const Review = ({ review, mode }) => {
         </View>
       </View>
       {mode === "user" ? (
-        <ReviewButtons repositoryId={review.repositoryId} />
+        <ReviewButtons
+          repositoryId={review.repositoryId}
+          handleDeleteReview={handleDeleteReview}
+          reviewId={review.id}
+        />
       ) : null}
     </>
   );

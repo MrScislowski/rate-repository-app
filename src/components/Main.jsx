@@ -7,6 +7,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import SingleRepository from "./SingleRepository";
 import ReviewForm from "./ReviewForm";
+import UserReviews from "./UserReviews";
 
 export default function Main() {
   return (
@@ -18,6 +19,7 @@ export default function Main() {
         <Route path="/createReview" element={<ReviewForm />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/reviews" element={<UserReviews />} />
       </Routes>
       <StatusBar style="auto" />
     </View>

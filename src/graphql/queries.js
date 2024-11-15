@@ -36,6 +36,31 @@ const GET_CURRENT_USER = gql`
   }
 `;
 
+const GET_USER_REVIEWS = gql`
+  query GetMyReviews {
+    me {
+      reviews {
+        edges {
+          node {
+            createdAt
+            id
+            rating
+            repositoryId
+            text
+            user {
+              username
+            }
+            userId
+            repository {
+              fullName
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 const GET_REPOSITORY_BY_ID = gql`
   query Query($repositoryId: ID!) {
     repository(id: $repositoryId) {
@@ -81,4 +106,5 @@ export default {
   GET_CURRENT_USER,
   GET_REPOSITORY_BY_ID,
   GET_REPOSITORY_REVIEWS_BY_ID,
+  GET_USER_REVIEWS,
 };

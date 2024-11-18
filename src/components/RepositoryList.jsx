@@ -101,7 +101,7 @@ export const RepositoryListContainer = ({
       data={repositories}
       ItemSeparatorComponent={ItemSeparator}
       onEndReached={onEndReached}
-      onEndReachedThreshold={0.01}
+      onEndReachedThreshold={0.5}
       renderItem={({ item }) => (
         <Pressable onPress={() => navigate(`/repositories/${item.id}`)}>
           <RepositoryItemSummary item={item} />

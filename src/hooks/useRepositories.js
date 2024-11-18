@@ -21,7 +21,7 @@ const useRepositories = ({ ordering, searchKeyword = "" }) => {
         orderBy,
         orderDirection,
         searchKeyword,
-        first: 2,
+        first: 5,
         after: "",
       },
     }

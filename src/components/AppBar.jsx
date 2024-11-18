@@ -86,6 +86,11 @@ const AppBar = () => {
             </Pressable>
           </AppBarTab>
         )}
+        <AppBarTab>
+          <Link to="/seeder">
+            <AppBarTitle>Seeder</AppBarTitle>
+          </Link>
+        </AppBarTab>
       </ScrollView>
     </View>
   );

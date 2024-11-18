@@ -8,6 +8,7 @@ import SignUp from "./SignUp";
 import SingleRepository from "./SingleRepository";
 import ReviewForm from "./ReviewForm";
 import UserReviews from "./UserReviews";
+import Seeder from "./Seeder";
 
 export default function Main() {
   return (
@@ -20,6 +21,7 @@ export default function Main() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/reviews" element={<UserReviews />} />
+        <Route path="/seeder" element={<Seeder />} />
       </Routes>
       <StatusBar style="auto" />
     </View>

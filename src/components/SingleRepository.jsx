@@ -19,9 +19,22 @@ const SingleRepository = () => {
   const { id } = useParams();
 
   const reviewQuery = useQuery(queries.GET_REPOSITORY_REVIEWS_BY_ID, {
-    variables: { repositoryId: id },
+    variables: { repositoryId: id, first: 4 },
     fetchPolicy: "cache-and-network",
   });
+
+  const handleFetchMore = () => {
+    if (
+      !reviewQuery.loading &&
+      reviewQuery?.data.repository.reviews.pageInfo.hasNextPage
+    ) {
+      reviewQuery.fetchMore({
+        variables: {
+          after: reviewQuery.data.repository.reviews.pageInfo.endCursor,
+        },
+      });
+    }
+  };
 
   return (
     <FlatList
@@ -29,6 +42,8 @@ const SingleRepository = () => {
       renderItem={({ item }) => <Review review={item.node} />}
       ListHeaderComponent={<RepositoryItemSummary />}
       ItemSeparatorComponent={<ItemSeparator />}
+      onEndReached={handleFetchMore}
+      onEndReachedThreshold={0.5}
     />
   );
 };
